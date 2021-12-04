@@ -113,7 +113,7 @@ export default class DashBoard extends React.Component {
                         <hr />
                         <div className="row bg-dark text-light">
                             <div className="container">
-                                <h2 className="center">Internal & External Users Summary</h2>
+                                <h2 className="center">Teachers & Students Summary</h2>
                             </div>
                         </div>
                         <div className="row bg-dark">
@@ -125,11 +125,11 @@ export default class DashBoard extends React.Component {
                                             <br />
                                             <br />
                                             <br />
+                                            <br />
+                                            <br />
                                             <i className="material-icons">science</i>
                                             <br />
                                             <br />
-                                            <br />
-                                            <i className="material-icons">border_color</i>
                                             <br />
                                             <br />
                                             <br />
@@ -137,29 +137,24 @@ export default class DashBoard extends React.Component {
                                         </div>
                                         <br />
                                         <div>
-                                            <p className="card-category">Total External Users</p>
+                                            <p className="card-category">Total Teachers</p>
                                             <h3 className="card-title">{extrenalUserCount.length}</h3>
                                         </div>
                                         <hr />
                                         <div>
-                                            <p className="card-category">Attendee Count</p>
+                                            <p className="card-category">Active Teachers</p>
                                             <h3 className="card-title">{AttendeeCount.length}</h3>
+                                            <Link to="/dashboard/externalusers" className="btn btn-warning">View</Link>
                                         </div>
                                         <hr />
                                         <div>
-                                            <p className="card-category">Prasenter Count</p>
+                                            <p className="card-category">Inactive Teachers</p>
                                             <h3 className="card-title">{PrasenterCount.length}</h3>
-                                        </div>
-                                        <hr />
-                                        <div>
-                                            <p className="card-category">Researcher Count</p>
-                                            <h3 className="card-title">{ResearcherCount.length}</h3>
+                                            <Link to="/dashboard/externalusers" className="btn btn-warning">View</Link>
                                         </div>
                                     </div>
                                     <div className="card-footer">
-                                        <div className="center">
-                                            <Link to="/dashboard/externalusers" className="btn btn-warning">View Users</Link>
-                                        </div>
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +166,11 @@ export default class DashBoard extends React.Component {
                                             <br />
                                             <br />
                                             <br />
+                                            <br />
+                                            <br />
                                             <i className="material-icons">science</i>
+                                            <br />
+                                            <br />
                                             <br />
                                             <br />
                                             <br />
@@ -179,24 +178,23 @@ export default class DashBoard extends React.Component {
                                         </div>
                                         <br />
                                         <div>
-                                            <p className="card-category">Total Intrernal Users</p>
+                                            <p className="card-category">Total Students</p>
                                             <h3 className="card-title">{userCount.length}</h3>
                                         </div>
                                         <hr />
                                         <div>
                                             <p className="card-category">Reviewer Count</p>
                                             <h3 className="card-title">{reviewerCount.length}</h3>
+                                            <Link to="/dashboard/internalusers" className="btn btn-primary">View</Link>
                                         </div>
                                         <hr />
                                         <div>
                                             <p className="card-category">Writers Count</p>
                                             <h3 className="card-title">{editorCount.length}</h3>
+                                            <Link to="/dashboard/internalusers" className="btn btn-primary">View</Link>
                                         </div>
                                     </div>
                                     <div className="card-footer">
-                                        <div className="center">
-                                            <Link to="/dashboard/internalusers" className="btn btn-primary">View Users</Link>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
