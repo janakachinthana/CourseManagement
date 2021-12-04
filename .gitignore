@@ -1,0 +1,49 @@
+/node_modules
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+/target
+
+
+# IDEs and editors
+/.idea
+*.iml
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode
+
+# backend project IDE realted
+/Conference-Management-Tool-app-backend/.idea
+/Conference-Management-Tool-app-backend/*.iml
+/Conference-Management-Tool-app-backend/node_modules
+/Conference-Management-Tool-app-backend/package-lock.json
+/Conference-Management-Tool-app-backend/dal/test.js
+/Conference-Management-Tool-app-backend/public/
+/Conference-Management-Tool-app-backend/assets
+
+# frontend project IDE realted
+/Conference-Management-Tool-app-frontend/.idea
+/Conference-Management-Tool-app-frontend/*.iml
+/Conference-Management-Tool-app-frontend/node_modules
+/Conference-Management-Tool-app-frontend/package-lock.json
+/Conference-Management-Tool-app-frontend/dist
+/Conference-Management-Tool-app-frontend/.parcel-cache
+
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# System Files
+.DS_Store
+Thumbs.db
