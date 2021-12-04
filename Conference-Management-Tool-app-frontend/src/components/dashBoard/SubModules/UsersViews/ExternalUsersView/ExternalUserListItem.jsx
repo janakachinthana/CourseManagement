@@ -17,7 +17,7 @@ export default function ExternalUserListItem(props) {
 
     return (
         <div className="col-md-4">
-            {true ?
+            {externalUser.status == "approved" ?
                 <div className="card bg-dark text-warning">
                     <div className="card-header">
                         <h3 className="text-center text-light">{externalUser.name}</h3>
