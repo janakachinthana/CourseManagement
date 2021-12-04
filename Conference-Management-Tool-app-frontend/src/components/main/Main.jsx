@@ -27,7 +27,7 @@ const Main = () => {
     return (
         <div style={{ height: '100%' }}>
             <Switch>
-                <Redirect exact from="/" to="/conferences" />
+                <Redirect exact from="/" to="/register-home" />
                 {/* conferences component */}
                 <Route exact path="/conferences">
                     <ConferenceHolder />
