@@ -36,18 +36,23 @@ export class Login extends Component {
             } else {
                 this.context.getExternalUserByemail(this.state.email).then(internalUserElem => {
                     console.log(internalUserElem);
-                    this.context.loginUser = this.state.email;
-                    if (internalUserElem.password == this.state.password) {
+                   
+                    if (internalUserElem.password != this.state.password ) {
+                        alert('Invalid Credentials')
+
+                    } else if(internalUserElem.status != "approved") {
+                        alert('Plz contact Admin. You have to wait for Admin confirmation.')
+
+                    }else{
+                        this.context.loginUser = this.state.email;
                         alert('Successfully loged in');
                         localStorage.setItem('User', internalUserElem.name);
                         localStorage.setItem('UserType', internalUserElem.type);
                         window.location = '/';
 
-                    } else {
-                        alert('Invalid Credentials')
                     }
                 }).catch(err => {
-                    alert('Invalid credentials')
+                    alert('Something went wrong')
                 });
             }
         } else {

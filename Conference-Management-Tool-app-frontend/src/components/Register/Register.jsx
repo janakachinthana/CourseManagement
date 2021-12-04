@@ -44,10 +44,7 @@ export default class Register extends React.Component {
             contactNo: null,
             password: null,
             password2: null,
-            type: 'ATTENDEE',
-            activityType: null,
-            category: null,
-            activityInformation: null,
+            type: 'TEACHER',
             status: null,
             imagePath: '',
             imageFile: null
@@ -74,16 +71,13 @@ export default class Register extends React.Component {
     onSubmit(event) {
         event.preventDefault();
         const { password } = this.state;
-        this.state.status = 'Processing';
+        this.state.status = 'not approved';
         const externalUserObj = {
             email: this.state.email,
             name: this.state.name,
             contactNo: this.state.contactNo,
             password: this.state.password,
             type: this.state.type,
-            activityType: this.state.activityType,
-            category: this.state.activityType,
-            activityInformation: this.state.activityInformation,
             status: this.state.status
         };
         //for update
@@ -105,9 +99,6 @@ export default class Register extends React.Component {
         formData.append('contactNo', externalUserObj.contactNo);
         formData.append('password', externalUserObj.password);
         formData.append('type', externalUserObj.type);
-        formData.append('activityType', externalUserObj.activityType);
-        formData.append('category', externalUserObj.category);
-        formData.append('activityInformation', externalUserObj.activityInformation);
         formData.append('status', externalUserObj.status);
         formData.append('externalUserImage', externalUserObj.imageFile);
 
@@ -253,87 +244,13 @@ export default class Register extends React.Component {
                                     <Form.Control name="type" as="select"
                                         custom
                                         onChange={(event) => this.onChange(event)}>
-                                        <option value="ATTENDEE">Attendee</option>
-                                        <option value="RESEARCHER">Researcher</option>
-                                        <option value="PRESENTER">Presenter</option>
+                                        <option value="TEACHER">Teacher</option>
+                                        <option value="STUDENT">Student</option>
                                     </Form.Control>
                                 </Form.Group>
 
                             </Form.Row>
-                            {(this.state.type != "ATTENDEE") ?
-                                <div>
-                                    <br />
-                                    <Form.Label style={{ color: 'black' }}> Upload Deliverables</Form.Label>
-                                    <Form.File accept="application/pdf" className="form-control-file" multiple id="id_productImage"
-                                        onChange={event => this.onChangeProductFormFile(event)} />
-                                </div>
-                                :
-                                ''
-                            }
-
-                            {(this.state.type == "RESEARCHER") ?
-                                <Form.Group controlId="formBasicDelivery">
-                                    <Form.Label style={{ color: 'black' }}>Activity Type</Form.Label>
-                                    <Form.Control name="activityType" as="select"
-                                        custom
-                                        onChange={(event) => this.onChange(event)}>
-                                        {/* <option value="PresentResults">Present Results</option> */}
-                                        <option value="Workshops">Workshops</option>
-                                        <option value="TechnicalSessions">Technical Sessions (Present Research Results)</option>
-                                        <option value="OtherActivity">Other Activity</option>
-                                    </Form.Control>
-                                </Form.Group>
-                                :
-                                ''
-                            }
-
-                            {(this.state.type != "ATTENDEE") ?
-                                <Form.Group controlId="formBasicDelivery">
-                                    <Form.Label style={{ color: 'black' }}>Category</Form.Label>
-                                    <Form.Control name="activityType" as="select"
-                                        custom
-                                        onChange={(event) => this.onChange(event)}>
-                                        <option value="REACT">React</option>
-                                        <option value="MONGODB">Mongo DB</option>
-                                        <option value="RESTFUL API">Restfull API</option>
-                                        <option value="SPRING">Springboot</option>
-                                        <option value="DOCKER">Docker</option>
-                                        <option value="JAVASCRIPT">Javascript</option>
-                                    </Form.Control>
-                                </Form.Group>
-                                :
-                                ''
-                            }
-
-                            {(this.state.type != "ATTENDEE") ?
-                                <Form.Group controlId="formBasicContactNo">
-                                    <Form.Label style={{ color: 'black' }}>Activity Information</Form.Label>
-                                    <Form.Control as="textarea" rows={3}
-                                        name="activityInformation"
-                                        onChange={(event) => this.onChange(event)}
-                                    />
-                                </Form.Group>
-                                :
-                                ''
-                            }
-
-                            {(this.state.type == "ATTENDEE") ?
-                                <div className="container" style={{ marginTop: '5%', textAlign: 'center' }}>
-                                    <h5>Registration Fee of Rs 1000 have to be payed</h5>
-                                    <Payment />
-                                </div>
-                                :
-                                ''
-                            }
-                            {(this.state.type == "PRESENTER") ?
-                                <div className="container" style={{ marginTop: '5%', textAlign: 'center' }}>
-                                    <h5>Registration Fee of Rs 3000 have to be payed.</h5>
-                                    <h6 style={{ color: 'red' }}> The amount will be deducted from your account once the proposal is accepted by the management team. We will get back to you through email.</h6>
-                                    <Payment />
-                                </div>
-                                :
-                                ''
-                            }
+                          
                             <div style={{ marginTop: '5%', textAlign: 'center' }}>
                                 <Button type="submit" variant="primary" >Register</Button>
                             </div>

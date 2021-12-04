@@ -40,13 +40,12 @@ const configureFormDataObject = (isAdding, externalUser) => {
     return new Promise((resolve, reject) => {
         try {
             let formData = new FormData();
+            formData.append('email', externalUser.email);
             formData.append('name', externalUser.name);
             formData.append('contactNo', externalUser.contactNo);
             formData.append('password', externalUser.password);
-            formData.append('activityType', externalUser.activityType);
-            formData.append('activityType', externalUser.activityType);
-            formData.append('category', externalUser.category);
-            formData.append('activityInformation', externalUser.activityInformation);
+            formData.append('type', externalUser.type);
+            formData.append('status', externalUser.status);
 
 
             if (isAdding && externalUser.hasOwnProperty('externalUserImage') && externalUser.externalUserImage) {

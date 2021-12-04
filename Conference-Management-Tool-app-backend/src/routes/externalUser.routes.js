@@ -35,9 +35,6 @@ router.post('/', async ctx => {
             contactNo: externalUser.contactNo,
             password: externalUser.password,
             type: externalUser.type,
-            activityType: externalUser.activityType,
-            category: externalUser.category,
-            activityInformation: externalUser.activityInformation,
             status: externalUser.status
         }, ctx.request.files?.externalUserImage);
         ctx.response.type = 'application/json';

@@ -10,16 +10,13 @@ const externalUserDir = `${assetDir}${path.sep}externaluser`;
 
 /** add external user */
 
-const addExternalUser = async ({ email, name, contactNo, password, type, activityType, category, activityInformation, status }, ctxExternalUserImage) => {
+const addExternalUser = async ({ email, name, contactNo, password, type,  status }, ctxExternalUserImage) => {
     const externalUser = {
         email,
         name,
         contactNo,
         password,
         type,
-        activityType,
-        category,
-        activityInformation,
         status,
         imagePath: null
     }

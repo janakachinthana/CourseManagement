@@ -6,8 +6,8 @@ const collectionName = 'ExternalUsers';
 const ExternalUsers = new DatabaseService(collectionName);
 
 //add an user to the collection
-const addExternalUser = async ({ email, name, contactNo, password, type, activityType, category, activityInformation, status, imagePath }) => {
-    return await ExternalUsers.save({ email, name, contactNo, password, type, activityType, category, activityInformation, status, imagePath })
+const addExternalUser = async ({ email, name, contactNo, password, type, status, imagePath }) => {
+    return await ExternalUsers.save({ email, name, contactNo, password, type,  status, imagePath })
 }
 
 //update external user image path
