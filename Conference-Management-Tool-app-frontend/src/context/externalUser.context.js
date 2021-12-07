@@ -9,7 +9,11 @@ const ExternalUserContext = React.createContext({
     getAllExternalUser: () => {
     },
     addExternalUser: (externalUser) => {
-    }
+    },
+    updateExternalUser: (externalUser) => {
+    },
+    deleteExternalUser:  (externalUserID) => {
+    },
 });
 
 class ExternalUserProvider extends Component {
@@ -83,7 +87,32 @@ class ExternalUserProvider extends Component {
         });
     }
 
+   /** Delete a ExternalUser by ExternalUserID by using backend services.
+ * @param ExternalUserID ID of the ExternalUser to be deleted.
+ * @return Promise promise with a result. */
+    deleteExternalUser(externalUserID) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await ExternalUserService.deleteExternalUser(externalUserID);
+                if (response.status === 200) {
+                    /* 200 - successful. */
+                    /* get the ExternalUser array. */
+                    const externalUsersArr = [...this.state.externalUsers];
+                    /* find the index of the updated product element/object. */
+                    const indexOfExternalUser = externalUsersArr.findIndex((externalUserElem, index) => externalUserElem.id === externalUser.id);
+                    /* replace the updated product with the old one. */
+                    externalUsersArr.splice(indexOfExternalUser, 1);
 
+                    this.setState((prevValue => {
+                        prevValue.externalUsers = externalUsersArr;
+                    }));
+                    resolve(true);
+                }
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
 
     render() {
         return (
@@ -91,6 +120,7 @@ class ExternalUserProvider extends Component {
                 externalUsers: this.state.externalUsers,
                 addExternalUser: this.addExternalUser.bind(this),
                 getAllExternalUser: this.getAllExternalUser.bind(this),
+                deleteExternalUser: this.deleteExternalUser.bind(this),
             }
             }>
                 {this.props.children}

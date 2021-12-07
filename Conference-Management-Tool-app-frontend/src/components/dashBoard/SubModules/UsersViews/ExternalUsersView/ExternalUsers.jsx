@@ -21,7 +21,7 @@ export default class ExternalUsers extends React.Component {
     removeExternalUser (externalUser) {
         console.log(externalUser._id);
         window.location = '/dashboard/externalUsers';
-        return this.context.deleteInternalUser(externalUser._id);
+        return this.context.deleteExternalUser(externalUser._id);
        
     }
 

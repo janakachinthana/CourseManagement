@@ -73,6 +73,21 @@ const configureFormDataObject = (isAdding, externalUser) => {
     });
 };
 
+/** Delete a externalUser by externalUserID by using backend services.
+ * @param externalUserID ID of the externalUser to be deleted.
+ * @return Promise promise with a result. If successful, then resolve the ,
+ * otherwise, reject the error(errorResponse) */
+ const deleteExternalUser = (externalUserID) => {
+    return new Promise((resolve, reject) => {
+        try { /* send a delete request to the backend using axios. */
+            const result = axios.delete(`${process.env.CONFERENCE_MANAGEMENT_BACKEND_API_URL}externaluser/${externalUserID}`);
+            resolve(result);
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
 
 /**implemented Add external User Method into context */
 

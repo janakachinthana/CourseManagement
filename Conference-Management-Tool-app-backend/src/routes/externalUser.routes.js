@@ -2,7 +2,7 @@ const Router = require('@koa/router');
 const path = require('path');
 const fs = require('fs');
 const mimeTypes = require('mime-types');
-const { addExternalUser, getExternalUsers } = require('../api/externalUser.api');
+const { addExternalUser, getExternalUsers, getExternalUser, deleteExternalUser } = require('../api/externalUser.api');
 const { getPasswordbyEmail } = require('../dal/externalUser.dao');
 
 /* assets and products dir */
@@ -60,6 +60,41 @@ router.get('/', async ctx => {
     } catch (error) {
         ctx.response.status = 500;
     }
+});
+/** delete a externalUser by given ID. */
+router.del('/:id', async ctx => {
+    const id = ctx.params.id;
+
+    try {
+        const result = await getExternalUser(id);
+        console.log(result);
+        if (result) {
+            /* found a matching record for the given ID. */
+            try {
+                const result = await deleteExternalUser(id);
+                console.log("athuleeee....")
+                if (result?.deletedCount === 1) {
+                    /* record delete successfully. */
+                    ctx.response.status = 200;
+                } else {
+                    /* something went wrong with delete operation. */
+                    ctx.response.status = 500;
+                }
+            } catch (error) {
+                ctx.response.status = 500;
+                console.error(error);
+            }
+        } else {
+            /* no matching record found for the given ID. */
+            ctx.response.status = 404;
+        }
+
+    } catch (error) {
+        /* something went wrong when finding a matching record. */
+        ctx.response.status = 500;
+        console.error(error);
+    }
+
 });
 
 module.exports = router;

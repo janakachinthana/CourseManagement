@@ -73,10 +73,33 @@ const getExternalUsers = async () => {
     return await externalUserDao.getAllExternalUsers();
 };
 
+const getExternalUser = async id => {
+    return await externalUserDao.getExternalUser(id);
+};
+const deleteExternalUser = async id=>{
+    return new Promise(async (resolve, reject) =>{
+        try {
+           
+            // const existingExternalUser = await externalUserDao.getExternalUser(id);
+            // console.log(path);
+            // const oldImageFilePath = `${externalUserDir + path.sep + path.parse(existingExternalUser?.imagePath).base}`;
+           
+            // if (fs.existsSync(oldImageFilePath)) {
+            //     fs.unlinkSync(oldImageFilePath);
+            // }
+            const result = await externalUserDao.deleteExternalUser(id);
+            resolve(result);
+        } catch (error) {
+            reject(error);
+        }
+    }) 
+};
 
 
 module.exports = {
     addExternalUser,
-    getExternalUsers
+    getExternalUsers,
+    getExternalUser,
+    deleteExternalUser
 }
 

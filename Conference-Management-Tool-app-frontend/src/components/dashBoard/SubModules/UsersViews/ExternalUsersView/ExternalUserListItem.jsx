@@ -11,7 +11,7 @@ export default function ExternalUserListItem(props) {
 
     /** redirecting to the edit page,using product ID. */
     const redirectToEdit = () => {
-        history.push(`/dashboard/externalUsers/${externalUser?._id}/edit`);
+        history.push(`/dashboard/externalusers/${externalUser?._id}/edit`);
     };
 
 
