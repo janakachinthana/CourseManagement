@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- by Shiranga Dissanayake
+	SQL queries -->
+<Querys>
+
+	<!-- Create table user Query -->
+	<query id="create_user_table">
+        <![CDATA[
+            CREATE TABLE user(
+				userID varchar(10) not null,
+				fullName varchar(150),
+				email varchar(150),
+				type varchar(10),
+				status varchar(15),
+				contact varchar(15),
+				password varchar(30),
+				primary key (userID)
+				
+			)
+        ]]>
+	</query>
+
+	<!-- DROP TABLE USER Query -->
+	<query id="drop_user_table">
+         <![CDATA[        
+            DROP TABLE IF EXISTS user 
+        ]]>
+	</query>
+
+	<!-- Select all user orders Query -->
+	<query id="insert_user">
+        <![CDATA[
+          	insert into user (userID, fullName, email, type, status, contact, password) 
+          	values (?, ?, ?, ?, ?, ?, ?)
+        ]]>
+	</query>
+	
+	<!-- Select a particular user by id Query -->
+	<query id="user_by_id">
+         <![CDATA[        
+            select * from user where user.userID = ?
+        ]]>
+	</query>
+	
+	<!-- Select a particular user by email Query -->
+	<query id="user_by_email">
+         <![CDATA[        
+            select * from user where user.email = ?
+        ]]>
+	</query>
+
+	<!-- Select all users -->
+	<query id="all_users">
+         <![CDATA[        
+            select * from user
+        ]]>
+	</query>
+
+	<!-- Delete a particular user by id Query -->
+	<query id="remove_user">
+         <![CDATA[        
+            delete from user where user.userID = ?
+        ]]>
+	</query>
+	
+	<!-- Update a particular user by id Query -->
+	<query id="update_user">
+         <![CDATA[        
+            update user as e 
+            set e.userName = ?, e.price = ?, e.description = ? , e.image = ?
+            where e.userID = ?
+        ]]>
+	</query>
+	<!-- Update a particular user status by id Query -->
+	<query id="update_user_status">
+         <![CDATA[        
+            update user as e 
+            set e.status = ?
+            where e.userID = ?
+        ]]>
+	</query>
+	
+		<!-- Get user IDs Query -->
+	<query id="user_ids">
+         <![CDATA[        
+            select e.userID from user as e
+        ]]>
+	</query>
+	
+	
+	<!-- For Courses -->
+	
+	<!-- Create table course Query -->
+	<query id="create_course_table">
+        <![CDATA[
+            CREATE TABLE course(
+				courseID varchar(10) not null,
+				courseName varchar(150),
+				specification varchar(150),
+				description varchar(1500),
+				imgUrl varchar(150),
+				status varchar(15),
+				lic varchar(150),
+				primary key (courseID)
+				
+			)
+        ]]>
+	</query>
+
+	<!-- DROP TABLE COURSE Query -->
+	<query id="drop_course_table">
+         <![CDATA[        
+            DROP TABLE IF EXISTS course 
+        ]]>
+	</query>
+
+	<!-- Select all course orders Query -->
+	<query id="insert_course">
+        <![CDATA[
+          	insert into course (courseID, courseName, specification, description, imgUrl, status, lic) 
+          	values (?, ?, ?, ?, ?, ?, ?)
+        ]]>
+	</query>
+	
+	<!-- Select a particular course by id Query -->
+	<query id="course_by_id">
+         <![CDATA[        
+            select * from course where course.courseID = ?
+        ]]>
+	</query>
+	
+	<!-- Select all courses -->
+	<query id="all_courses">
+         <![CDATA[        
+            select * from course
+        ]]>
+	</query>
+
+	<!-- Delete a particular course by id Query -->
+	<query id="remove_course">
+         <![CDATA[        
+            delete from course where course.courseID = ?
+        ]]>
+	</query>
+	
+	<!-- Update a particular course by id Query -->
+	<query id="update_course">
+         <![CDATA[        
+            update course as e 
+            set e.courseName = ?, e.specification = ?, e.description = ? , e.imgUrl = ? , e.status = ? , e.lic = ?
+            where e.courseID = ?
+        ]]>
+	</query>
+	
+		<!-- Get course IDs Query -->
+	<query id="course_ids">
+         <![CDATA[        
+            select e.courseID from course as e
+        ]]>
+	</query>
+	
+	
+	
+	
+	
+	
+	<!-- For StudentCourses -->
+	
+	<!-- Create table studentCourse Query -->
+	<query id="create_studentCourse_table">
+        <![CDATA[
+            CREATE TABLE studentCourse(
+				ID varchar(10) not null,
+				studentID varchar(10),
+				courseID varchar(10),
+				progress varchar(50),
+				status varchar(50),
+				primary key (ID)
+				
+			)
+        ]]>
+	</query>
+
+	<!-- DROP TABLE COURSE Query -->
+	<query id="drop_studentCourse_table">
+         <![CDATA[        
+            DROP TABLE IF EXISTS studentCourse 
+        ]]>
+	</query>
+
+	<!-- Select all studentCourse orders Query -->
+	<query id="insert_studentCourse">
+        <![CDATA[
+          	insert into studentCourse (ID, studentID, courseID, progress, status) 
+          	values (?, ?, ?, ?, ?)
+        ]]>
+	</query>
+	
+	<!-- Select a particular studentCourse by id Query -->
+	<query id="studentCourse_by_id">
+         <![CDATA[        
+            select * from studentCourse where studentCourse.ID = ?
+        ]]>
+	</query>
+	
+	<!-- Select all studentCourses -->
+	<query id="all_studentCourses">
+         <![CDATA[        
+            select * from studentCourse
+        ]]>
+	</query>
+
+	<!-- Delete a particular studentCourse by id Query -->
+	<query id="remove_studentCourse">
+         <![CDATA[        
+            delete from studentCourse where studentCourse.ID = ?
+        ]]>
+	</query>
+	
+	<!-- Update a particular studentCourse by id Query -->
+	<query id="update_studentCourse">
+         <![CDATA[        
+            update studentCourse as e 
+            set e.studentID = ?, e.courseID = ?, e.progress = ? , e.status = ? 
+            where e.ID = ?
+        ]]>
+	</query>
+	
+		<!-- Get studentCourse IDs Query -->
+	<query id="studentCourse_ids">
+         <![CDATA[        
+            select e.ID from studentCourse as e
+        ]]>
+	</query>
+	
+	
+	
+	
+	
+		<!-- For Lecture -->
+	
+	<!-- Create table lecture Query -->
+	<query id="create_lecture_table">
+        <![CDATA[
+            CREATE TABLE lecture(
+				lectureID varchar(10) not null,
+				courseID varchar(10),
+				lectureName varchar(50),
+				description varchar(50),
+				fileUrl varchar(500),
+				status varchar(50),
+				primary key (lectureID)
+				
+			)
+        ]]>
+	</query>
+
+	<!-- DROP TABLE COURSE Query -->
+	<query id="drop_lecture_table">
+         <![CDATA[        
+            DROP TABLE IF EXISTS lecture 
+        ]]>
+	</query>
+
+	<!-- Select all lecture orders Query -->
+	<query id="insert_lecture">
+        <![CDATA[
+          	insert into lecture (lectureID, courseID, lectureName, description, fileUrl, status) 
+          	values (?, ?, ?, ?, ?, ?)
+        ]]>
+	</query>
+	
+	<!-- Select a particular lecture by id Query -->
+	<query id="lecture_by_id">
+         <![CDATA[        
+            select * from lecture where lecture.lectureID = ?
+        ]]>
+	</query>
+	
+	<!-- Select all lectures -->
+	<query id="all_lectures">
+         <![CDATA[        
+            select * from lecture
+        ]]>
+	</query>
+
+	<!-- Delete a particular lecture by id Query -->
+	<query id="remove_lecture">
+         <![CDATA[        
+            delete from lecture where lecture.lectureID = ?
+        ]]>
+	</query>
+	
+	<!-- Update a particular lecture by id Query -->
+	<query id="update_lecture">
+         <![CDATA[        
+            update lecture as e 
+            set e.courseID = ?, e.lectureName = ?, e.description = ? , e.fileUrl = ? , e.status = ? 
+            where e.lectureID = ?
+        ]]>
+	</query>
+	
+		<!-- Get lecture IDs Query -->
+	<query id="lecture_ids">
+         <![CDATA[        
+            select e.lectureID from lecture as e
+        ]]>
+	</query>
+	
+</Querys>
