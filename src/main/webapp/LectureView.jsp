@@ -6,6 +6,9 @@
 <%@page import="KDU.IS.Models.Lecture"%>
 <%@page import="KDU.IS.Services.LectureServiceImpl"%>
 <%@page import="KDU.IS.Services.ILectureService"%>
+<%@page import="KDU.IS.Models.StudentLecture"%>
+<%@page import="KDU.IS.Services.StudentLectureServiceImpl"%>
+<%@page import="KDU.IS.Services.IStudentLectureService"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,96 +59,105 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
-							<%
-		String CourseID = request.getParameter("courseID");
-		ICourseService courseService = new CourseServiceImpl();
-		Course course = courseService.getCourseByID(CourseID);
-		%>
-		<div class="page-header min-height-150 border-radius-xl mt-4 ">
-			<h2 class="mask  bg-info  text-center opacity-6 text-light">
-				<%=course.getCourseName()%></h2>
-		</div>
-		<%
-		ILectureService lectureService = new LectureServiceImpl();
+						<%
+						String CourseID = request.getParameter("courseID");
+						ICourseService courseService = new CourseServiceImpl();
+						Course course = courseService.getCourseByID(CourseID);
+						%>
+						<div class="page-header min-height-150 border-radius-xl mt-4 ">
+							<h2 class="mask  bg-info  text-center opacity-6 text-light">
+								<%=course.getCourseName()%></h2>
+						</div>
+						<%
+						ILectureService lectureService = new LectureServiceImpl();
 
-		ArrayList<Lecture> lectureList = lectureService.getLectures();
-		for (Lecture lecture : lectureList) {
-			if (course.getCourseID().equals(lecture.getCourseID())) {
-		%>
-	<br> <br>
-		<div class="container-fluid px-2 px-md-4">
+						ArrayList<Lecture> lectureList = lectureService.getLectures();
+						for (Lecture lecture : lectureList) {
+							if (course.getCourseID().equals(lecture.getCourseID())) {
+						%>
+						<br> <br>
+						<div class="container-fluid px-2 px-md-4">
 
-			<div class="card card-body mx-3 mx-md-4 mt-n6">
+							<div class="card card-body mx-3 mx-md-4 mt-n6">
 
-				<div class="row">
-					<div class="row">
-						<div class="col-12 mt-4">
-							<div class="row">
+								<div class="row">
+									<div class="row">
+										<div class="col-12 mt-4">
+											<div class="row">
 
-								<div class=" col-md-12 mb-xl-0 mb-4">
-									<div class="card card-blog card-plain">
-										<div class="card-header p-0 mt-n4 mx-3">
-											<h1 class="text-center bg-dark text-light"><%=lecture.getLectureName()%></h1>
-											<a class="d-block shadow-xl border-radius-xl"> 
-											<%
- 												if (lecture.getFileUrl().endsWith("pdf") ) {
- 											%> 
- 											
- 											<object data="assets/Files/<%=lecture.getFileUrl()%>#page=2"
-													type="application/pdf" width="100%" height="1000px">
-													<p>
-														Your browser does not support PDFs. <a
-															href="https://example.com/test.pdf">Download the PDF</a>
-														.
-													</p>
-											</object> 
-											<%
-												 }else if(lecture.getFileUrl().endsWith("png") || lecture.getFileUrl().endsWith("jpg") ||lecture.getFileUrl().endsWith("jpeg")){
-											 %>
-											  <img class="mx-auto d-block"  src="assets/Files/<%=lecture.getFileUrl()%>">
-											
-											<%
-												 }else{
-											 %>
-											  <video width="100%" controls>
-													<source src="assets/Files/<%=lecture.getFileUrl()%>"
-														type="video/mp4">
-													Your browser does not support HTML video.
-											</video>
-											<%
-												}
-											%>
-											</a>
-										</div>
-										<div class="card-body p-3">
-											<h3 class="text-center text-dark">
-												<b><%=lecture.getStatus()%></b>
-											</h3>
-											<div
-												class="d-flex align-items-center justify-content-between">
-												<form action="QuizView.jsp" method="POST">
-													<input type="hidden" name="lectureID"
-														value="<%=lecture.getLectureID()%>">
-													<button type="submit"
-														class="btn btn-outline-info btn-sm mb-0">Go to
-														Quiz</button>
-												</form>
+												<div class=" col-md-12 mb-xl-0 mb-4">
+													<div class="card card-blog card-plain">
+														<div class="card-header p-0 mt-n4 mx-3">
+															<h1 class="text-center bg-dark text-light"><%=lecture.getLectureName()%></h1>
+															<a class="d-block shadow-xl border-radius-xl"> <%
+ if (lecture.getFileUrl().endsWith("pdf")) {
+ %> <object
+																	data="assets/Files/<%=lecture.getFileUrl()%>#page=2"
+																	type="application/pdf" width="100%" height="1000px">
+																	<p>
+																		Your browser does not support PDFs. <a
+																			href="https://example.com/test.pdf">Download the
+																			PDF</a> .
+																	</p>
+																</object> <%
+ } else if (lecture.getFileUrl().endsWith("png") || lecture.getFileUrl().endsWith("jpg")
+ 		|| lecture.getFileUrl().endsWith("jpeg")) {
+ %> <img class="mx-auto d-block"
+																src="assets/Files/<%=lecture.getFileUrl()%>"> <%
+ } else {
+ %> <video width="100%" controls>
+																	<source src="assets/Files/<%=lecture.getFileUrl()%>"
+																		type="video/mp4">
+																	Your browser does not support HTML video.
+																</video> <%
+ }
+ %>
+															</a>
+														</div>
+														<div class="card-body p-3">
+															<h3 class="text-center text-dark">
+																<b><%=lecture.getStatus()%></b>
+															</h3>
+															<%
+															IStudentLectureService studentLectureService = new StudentLectureServiceImpl();
+															ArrayList<StudentLecture> studentLectureList = studentLectureService.getStudentLectures();
+
+															for (StudentLecture studentLecture : studentLectureList) {
+
+																if (studentLecture.getLectureID().equals(lecture.getLectureID())) {
+															%>
+															<h3 class="text-center text-dark">
+																<b>Marks: <%=studentLecture.getMarks()%></b>&nbsp;&nbsp;&nbsp;Attempt: <%=studentLecture.getOther()%>
+															</h3>
+															<%
+															}
+															}
+															%>
+															<div
+																class="d-flex align-items-center justify-content-between">
+																<form action="QuizView.jsp" method="POST">
+																	<input type="hidden" name="lectureID"
+																		value="<%=lecture.getLectureID()%>">
+																	<button type="submit"
+																		class="btn btn-outline-info btn-sm mb-0">Go
+																		to Quiz</button>
+																</form>
+															</div>
+															<p class="mb-0 text-sm text-dark">
+																<b><%=lecture.getDescription()%></b>
+														</div>
+													</div>
+												</div>
 											</div>
-											<p class="mb-0 text-sm text-dark">
-												<b><%=lecture.getDescription()%></b>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<%
-		}
-		}
-		%>
+						<%
+						}
+						}
+						%>
 					</div>
 				</div>
 			</div>

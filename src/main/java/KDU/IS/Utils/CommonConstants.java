@@ -236,4 +236,41 @@ public class CommonConstants {
 				
 				/** Constant for query id of get all quiz ids in Query.xml */
 				public static final String QUERY_ID_GET_QUIZ_IDS = "quiz_ids";
+				
+				
+				
+				
+				
+				//For StudentLecture 
+				
+				/** Constant for studentLecture id prefix */
+				public static final String ID_STUDENTLECTURE_PREFIX = "STLEC_00";
+				
+				/** Constant for query id of drop_table in Query.xml */
+				public static final String QUERY_ID_DROP_STUDENTLECTURE_TABLE = "drop_studentLecture_table";
+				
+				/** Constant for query id of create_table in Query.xml */
+				public static final String QUERY_ID_CREATE_STUDENTLECTURE_TABLE = "create_studentLecture_table";
+				
+				/** Constant for query id of insert studentLecture in Query.xml */
+				public static final String QUERY_ID_INSERT_STUDENTLECTURE = "insert_studentLecture";
+
+				/** Constant for query id of get an studentLecture in Query.xml */
+				public static final String QUERY_ID_GET_STUDENTLECTURE = "studentLecture_by_id";  
+
+				
+				/** Constant for query id of get all studentLecture in Query.xml */
+				public static final String QUERY_ID_ALL_STUDENTLECTURES = "all_studentLectures";
+				
+				/** Constant for query id of remove a studentLecture in Query.xml */
+				public static final String QUERY_ID_REMOVE_STUDENTLECTURE = "remove_studentLecture";
+				
+				/** Constant for query id of update a studentLecture in Query.xml */
+				public static final String QUERY_ID_UPDATE_STUDENTLECTURE = "update_studentLecture";
+				
+				/** Constant for query id of update a studentLecture in Query.xml */
+				public static final String QUERY_ID_UPDATE_STUDENTLECTURE_STATUS = "update_studentLecture_status";
+				
+				/** Constant for query id of get all studentLecture ids in Query.xml */
+				public static final String QUERY_ID_GET_STUDENTLECTURE_IDS = "studentLecture_ids";
 }

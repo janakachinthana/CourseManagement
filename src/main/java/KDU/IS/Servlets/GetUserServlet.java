@@ -54,6 +54,7 @@ public class GetUserServlet extends HttpServlet {
 			LoginUser.LoginUserName = user.getFullName();
 			LoginUser.Email = user.getEmail();
 			LoginUser.Contact = user.getContact();
+			
 			if(user.getPassword().equals(Password)) {
 				
 				if (user.getType().equals("STUDENT")) {

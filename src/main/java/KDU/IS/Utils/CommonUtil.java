@@ -85,5 +85,18 @@ public class CommonUtil {
 		return id;
 	}
 	
+	public static String generateStudentLectureIDs(ArrayList<String> arrayList) {
+
+		String id;
+		int next = arrayList.size();
+		next++;
+		id = CommonConstants.ID_STUDENTLECTURE_PREFIX + next;
+		if (arrayList.contains(id)) {
+			next++;
+			id = CommonConstants.ID_STUDENTLECTURE_PREFIX + next;
+		}
+		return id;
+	}
+	
 	
 }

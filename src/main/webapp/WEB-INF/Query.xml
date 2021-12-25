@@ -381,4 +381,76 @@
         ]]>
 	</query>
 	
+	
+	
+		<!-- For StudentLecture -->
+	
+	<!-- Create table studentLecture Query -->
+	<query id="create_studentLecture_table">
+        <![CDATA[
+            CREATE TABLE studentLecture(
+				studentLectureID varchar(10) not null,
+				lectureID varchar(10),
+				userID varchar(10),
+				marks varchar(10),
+				status varchar(50),
+				other varchar(500),
+				primary key (studentLectureID)
+				
+			)
+        ]]>
+	</query>
+
+	<!-- DROP TABLE COURSE Query -->
+	<query id="drop_studentLecture_table">
+         <![CDATA[        
+            DROP TABLE IF EXISTS studentLecture 
+        ]]>
+	</query>
+
+	<!-- Select all studentLecture orders Query -->
+	<query id="insert_studentLecture">
+        <![CDATA[
+          	insert into studentLecture (studentLectureID, lectureID, userID, marks, status, other) 
+          	values (?, ?, ?, ?, ?, ?)
+        ]]>
+	</query>
+	
+	<!-- Select a particular studentLecture by id Query -->
+	<query id="studentLecture_by_id">
+         <![CDATA[        
+            select * from studentLecture where studentLecture.studentLectureID = ?
+        ]]>
+	</query>
+	
+	<!-- Select all studentLectures -->
+	<query id="all_studentLectures">
+         <![CDATA[        
+            select * from studentLecture
+        ]]>
+	</query>
+
+	<!-- Delete a particular studentLecture by id Query -->
+	<query id="remove_studentLecture">
+         <![CDATA[        
+            delete from studentLecture where studentLecture.studentLectureID = ?
+        ]]>
+	</query>
+	
+	<!-- Update a particular studentLecture by id Query -->
+	<query id="update_studentLecture">
+         <![CDATA[        
+            update studentLecture as e 
+            set e.lectureID = ?, e.userID = ? , e.marks = ? , e.status = ? , e.other = ?
+            where e.studentLectureID = ?
+        ]]>
+	</query>
+	
+		<!-- Get studentLecture IDs Query -->
+	<query id="studentLecture_ids">
+         <![CDATA[        
+            select e.studentLectureID from studentLecture as e
+        ]]>
+	</query>
+	
 </Querys>

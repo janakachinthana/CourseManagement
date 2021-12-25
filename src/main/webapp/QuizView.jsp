@@ -76,81 +76,86 @@
 										<div class="col-12 mt-4">
 											<div class="row">
 												<div class=" col-md-12 mb-xl-0 mb-4">
-													<%
-													IQuizService quizService = new QuizServiceImpl();
+													<form action="AddUserMarksServlet" method="POST">
+														<%
+														IQuizService quizService = new QuizServiceImpl();
 
-													ArrayList<Quiz> quizList = quizService.getQuizs();
-													for (Quiz quiz : quizList) {
-														if (quiz.getLectureID().equals(LectureID)) {
-													%>
-													<div class="card card-blog card-plain ">
-														<div class="card-header p-0 mt-n4 mx-3">
-															<h1 class="bg-dark"><%=quiz.getQuizID()%></h1>
+														ArrayList<Quiz> quizList = quizService.getQuizs();
+														for (Quiz quiz : quizList) {
+															if (quiz.getLectureID().equals(LectureID)) {
+														%>
+														<div class="card card-blog card-plain ">
+															<div class="card-header p-0 mt-n4 mx-3">
+																<h1 class="bg-dark"><%=quiz.getQuizID()%></h1>
+															</div>
+															<div class="card-body p-3">
+																<h3 class="text-warning">
+																	<b><%=quiz.getQuestion()%></b>
+																</h3>
+
+
+
+																<h5 class="mb-0 text-sm text-info" style="float: left">
+																	<input type="radio" name="<%=quiz.getQuizID()%>"
+																		value="1">&nbsp;&nbsp;&nbsp;<%=quiz.getAns1()%>
+																</h5>
+																<br>
+																<h5 class="mb-0 text-sm text-info " style="float: left">
+																	<input type="radio" name="<%=quiz.getQuizID()%>"
+																		value="2">&nbsp;&nbsp;&nbsp;<%=quiz.getAns2()%>
+																</h5>
+																<br>
+																<%
+																if (!quiz.getAns3().equals("")) {
+																%>
+																<h5 class="mb-0 text-sm text-info" style="float: left">
+																	<input type="radio" name="<%=quiz.getQuizID()%>"
+																		value="3">&nbsp;&nbsp;&nbsp;<%=quiz.getAns3()%>
+																</h5>
+																<br>
+																<%
+																}
+																%>
+
+																<%
+																if (!quiz.getAns4().equals("")) {
+																%>
+																<h5 class="mb-0 text-sm text-info" style="float: left">
+																	<input type="radio" name="<%=quiz.getQuizID()%>"
+																		value="4">&nbsp;&nbsp;&nbsp;<%=quiz.getAns4()%>
+																</h5>
+																<br>
+																<%
+																}
+																if (!quiz.getAns5().equals("")) {
+																%>
+																<h5 class="mb-0 text-sm text-info" style="float: left">
+																	<input type="radio" name="<%=quiz.getQuizID()%>"
+																		value="5">&nbsp;&nbsp;&nbsp;<%=quiz.getAns5()%>
+																</h5>
+																<br>
+																<%
+																}
+																%>
+
+															</div>
 														</div>
-														<div class="card-body p-3">
-															<h3 class="text-warning">
-																<b><%=quiz.getQuestion()%></b>
-															</h3>
+														<br>
+														<%
+														}
+														}
+														%>
+
+														<div
+															class="d-flex align-items-center justify-content-between">
+															<form action="" method="POST">
+																<input type="hidden" name="lectureID"
+																	value="<%=lecture.getLectureID()%>"> 
 															
-																<h5 class="mb-0 text-sm text-info" style="float:left">
-																	<input type="radio" name="ans">&nbsp;&nbsp;&nbsp;<%=quiz.getAns1()%>
-																</h5>
-																<br>
-																<h5 class="mb-0 text-sm text-info " style="float:left">
-																	<input type="radio" name="ans">&nbsp;&nbsp;&nbsp;<%=quiz.getAns2()%>
-																</h5>
-																<br>
-																<%
-																	if(!quiz.getAns3().equals("")){
-																		%>
-																		<h5 class="mb-0 text-sm text-info" style="float:left">
-																		<input type="radio" name="ans">&nbsp;&nbsp;&nbsp;<%=quiz.getAns3()%>
-																	</h5>
-																	<br>
-																		<%
-																	}
-																%>
-																
-																<%
-																	if(!quiz.getAns4().equals("")){
-																		%>
-																		<h5 class="mb-0 text-sm text-info"style="float:left">
-																	<input type="radio" name="ans">&nbsp;&nbsp;&nbsp;<%=quiz.getAns4()%>
-																</h5>
-																<br>
-																		<% 
-																		
-																	}
-																	if(!quiz.getAns5().equals("")){
-																		%>
-																		<h5 class="mb-0 text-sm text-info" style="float:left">
-																	<input type="radio" name="ans">&nbsp;&nbsp;&nbsp;<%=quiz.getAns5()%>
-																</h5>
-																<br>
-																		<%
-																		
-																	}
-																%>
-																
-
+																<button type="submit" class="btn btn-outline-info">Submit</button>
+															</form>
 														</div>
-													</div>
-													<br>
-													<%
-													}
-													}
-													%>
-													
-												<div
-												class="d-flex align-items-center justify-content-between">
-												<form action="" method="POST">
-													<input type="hidden" name="lectureID"
-														value="<%=lecture.getLectureID()%>">
-													<button type="submit" 
-														class="btn btn-outline-info">Submit</button>
-												</form>
-											</div> 
-													
+													</form>
 												</div>
 											</div>
 										</div>
