@@ -33,7 +33,7 @@ public class UserServiceImpl implements IUserService{
 
 	static{
 		//create table or drop if exist
-		createUserTable();
+//		createUserTable();
 	}
 
 	private PreparedStatement preparedStatement;

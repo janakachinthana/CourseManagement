@@ -31,7 +31,7 @@ public class StudentCourseServiceImpl implements IStudentCourseService{
 
 	static{
 		//create table or drop if exist
-		createStudentCourseTable();
+//		createStudentCourseTable();
 	}
 
 	private PreparedStatement preparedStatement;

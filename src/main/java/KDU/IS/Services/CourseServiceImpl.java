@@ -32,7 +32,7 @@ public class CourseServiceImpl implements ICourseService{
 
 	static{
 		//create table or drop if exist
-		createCourseTable();
+//		createCourseTable();
 	}
 
 	private PreparedStatement preparedStatement;

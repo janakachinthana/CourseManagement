@@ -93,13 +93,13 @@
 							</div>
 						</div>
 						<div class="card-footer text-dark">
-							<form action="Payment.jsp" method="POST">
+							<form action="LectureView.jsp" method="POST">
 								<input type="hidden" name="studentID"
 									value="<%=LoginUser.LoginUserID%>"> <input
 									type="hidden" name="courseID" value="<%=course.getCourseID()%>">
 								<input type="hidden" name="progress" value="0"> <input
 									type="hidden" name="status" value="Enrolled">
-								<button type="submit" class="btn btn-info">Enroll Now</button>
+								<button type="submit" class="btn btn-info">Go to Course</button>
 							</form>
 						</div>
 					</div>

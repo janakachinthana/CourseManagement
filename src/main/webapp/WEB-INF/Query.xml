@@ -307,4 +307,78 @@
         ]]>
 	</query>
 	
+	
+		<!-- For Quiz -->
+	
+	<!-- Create table quiz Query -->
+	<query id="create_quiz_table">
+        <![CDATA[
+            CREATE TABLE quiz(
+				quizID varchar(10) not null,
+				lectureID varchar(10),
+				question varchar(500),
+				ans1 varchar(500),
+				ans2 varchar(500),
+				ans3 varchar(500),
+				ans4 varchar(500),
+				ans5 varchar(500),
+				answer varchar(2),
+				primary key (quizID)
+				
+			)
+        ]]>
+	</query>
+
+	<!-- DROP TABLE COURSE Query -->
+	<query id="drop_quiz_table">
+         <![CDATA[        
+            DROP TABLE IF EXISTS quiz 
+        ]]>
+	</query>
+
+	<!-- Select all quiz orders Query -->
+	<query id="insert_quiz">
+        <![CDATA[
+          	insert into quiz (quizID, lectureID, question, ans1, ans2, ans3, ans4, ans5, answer) 
+          	values (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ]]>
+	</query>
+	
+	<!-- Select a particular quiz by id Query -->
+	<query id="quiz_by_id">
+         <![CDATA[        
+            select * from quiz where quiz.quizID = ?
+        ]]>
+	</query>
+	
+	<!-- Select all quizs -->
+	<query id="all_quizs">
+         <![CDATA[        
+            select * from quiz
+        ]]>
+	</query>
+
+	<!-- Delete a particular quiz by id Query -->
+	<query id="remove_quiz">
+         <![CDATA[        
+            delete from quiz where quiz.quizID = ?
+        ]]>
+	</query>
+	
+	<!-- Update a particular quiz by id Query -->
+	<query id="update_quiz">
+         <![CDATA[        
+            update quiz as e 
+            set e.lectureID = ?, e.question = ?, e.ans1 = ? , e.ans2 = ? , e.ans3 = ? , e.ans4 = ? , e.ans5 = ? , e.answer = ? 
+            where e.quizID = ?
+        ]]>
+	</query>
+	
+		<!-- Get quiz IDs Query -->
+	<query id="quiz_ids">
+         <![CDATA[        
+            select e.quizID from quiz as e
+        ]]>
+	</query>
+	
 </Querys>

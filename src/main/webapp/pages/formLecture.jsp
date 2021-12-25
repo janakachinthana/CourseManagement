@@ -217,11 +217,11 @@
         </div>
         <p>Course Information</p>
         <div class="item">
-          <label for="name">Lecture Name<span>*</span></label>
+          <label>Lecture Name<span>*</span></label>
           <input type="text" name="lectureName" required/>
         </div>
         <div class="item">
-          <label for="address">Description<span>*</span></label>
+          <label >Description<span>*</span></label>
           <textarea name="description">Enter text here...</textarea>
         </div>
       

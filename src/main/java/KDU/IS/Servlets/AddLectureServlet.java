@@ -47,24 +47,41 @@ public class AddLectureServlet extends HttpServlet {
 					try {
 						item.write(new File("/Users/J.dissanayake/eclipse-workspace/KDU.IS.Self_Defense_Learning/src/main/webapp/assets/Files/"+item.getName()));
 
-					
 						
-						lecture.setLectureName(request.getParameter("lectureName"));
-						lecture.setDescription(request.getParameter("description"));
-						lecture.setCourseID(request.getParameter("courseID"));
-						lecture.setFileUrl("/Users/J.dissanayake/eclipse-workspace/KDU.IS.Self_Defense_Learning/src/main/webapp/assets/Files/"+item.getName());
+						
 						lecture.setStatus("Active");
 						
-						System.out.println(request.getParameter("courseID ")+ "hfhsdf");
+						if(item.getFieldName().equals("courseID")) {
+							lecture.setCourseID(item.getString());
+							
+						}else if(item.getFieldName().equals("lectureName")) {
+							lecture.setLectureName(item.getString());
+							
+						}else if(item.getFieldName().equals("description")) {
+							lecture.setDescription(item.getString());
+						
+						}else if(item.getFieldName().equals("upfile")) {
+							lecture.setFileUrl(item.getName());
+						}
+					
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
+				
+		
+				
 			} catch (FileUploadException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally {
+				
+				System.out.println(lecture.getCourseID());
+				System.out.println(lecture.getLectureName());
+				System.out.println(lecture.getDescription());
+				System.out.println(lecture.getStatus());
+				
 				ILectureService lectureService = new LectureServiceImpl();
 				lectureService.addLecture(lecture);
 				

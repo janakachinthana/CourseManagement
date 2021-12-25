@@ -1,7 +1,10 @@
 <%@page import="KDU.IS.Models.Course"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="KDU.IS.Services.CourseServiceImpl"%>
 <%@page import="KDU.IS.Services.ICourseService"%>
+<%@page import="KDU.IS.Models.Lecture"%>
+<%@page import="KDU.IS.Services.LectureServiceImpl"%>
+<%@page import="KDU.IS.Services.ILectureService"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="KDU.IS.Models.LoginUser"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,10 +53,11 @@
 						class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
 						<li class="breadcrumb-item text-sm"><a
 							class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
+						<li class="breadcrumb-item text-sm text-dark " aria-current="page">Course</li>
 						<li class="breadcrumb-item text-sm text-dark active"
-							aria-current="page">Course</li>
+							aria-current="page">Lectures</li>
 					</ol>
-					<h6 class="font-weight-bolder mb-0">Course</h6>
+					<h6 class="font-weight-bolder mb-0">Lectures</h6>
 				</nav>
 				<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
 					id="navbar">
@@ -170,105 +174,109 @@
 				</div>
 			</div>
 		</nav>
+
 		<!-- End Navbar -->
-		<div class="container-fluid px-2 px-md-4">
-			<%
-			String CourseID = request.getParameter("courseID");
-			ICourseService courseService = new CourseServiceImpl();
-			Course course = courseService.getCourseByID(CourseID);
-			%>
-			<div class="page-header min-height-150 border-radius-xl mt-4 ">
-				<span class="mask  bg-dark  text-center opacity-6"><h2 class="text-light"><%=course.getCourseName()%></h2></span>
+		<%
+		String CourseID = request.getParameter("courseID");
+		ICourseService courseService = new CourseServiceImpl();
+		Course course = courseService.getCourseByID(CourseID);
+		%>
+		<div class="page-header min-height-150 border-radius-xl mt-4 ">
+			<h2 class="mask  bg-dark  text-center opacity-6 text-light">
+				<%=course.getCourseName()%></h2>
 
-				<div class="col text-center">
-					<form action="./formLecture.jsp" method="POST">
-						 <input type="hidden" name="courseID" value="<%=course.getCourseID()%>"/>
-						<button class="btn btn-info" type="submit">Add Lecture</button>
-					</form>
-				</div>
+			<div class="col text-center">
+				<form action="./formLecture.jsp" method="POST">
+					<input type="hidden" name="courseID"
+						value="<%=course.getCourseID()%>" />
+					<button class="btn btn-info" type="submit">Add Lecture</button>
+				</form>
 			</div>
-			<div class="card card-body mx-3 mx-md-4 mt-n6">
-				<div class="row gx-4 mb-2">
-					<div class="col-auto">
-						<div class="avatar avatar-xl position-relative">
-							<img src="../assets/img/navbar-logo.jfif" alt="profile_image"
-								class="w-100 border-radius-lg shadow-sm">
-						</div>
-					</div>
+		</div>
+		<%
+		ILectureService lectureService = new LectureServiceImpl();
 
-				</div>
+		ArrayList<Lecture> lectureList = lectureService.getLectures();
+		for (Lecture lecture : lectureList) {
+			if (course.getCourseID().equals(lecture.getCourseID())) {
+		%>
+
+		<div class="container-fluid px-2 px-md-4">
+
+			<div class="card card-body mx-3 mx-md-4 mt-n6">
+
 				<div class="row">
 					<div class="row">
 						<div class="col-12 mt-4">
 							<div class="row">
-								<%-- <%
-								ICourseService courseService = new CourseServiceImpl();
 
-								ArrayList<Course> userList = courseService.getCourses();
-								for (Course course : userList) {
-								%>
-								<div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+								<div class=" col-md-12 mb-xl-0 mb-4">
 									<div class="card card-blog card-plain">
 										<div class="card-header p-0 mt-n4 mx-3">
-											<a class="d-block shadow-xl border-radius-xl"> <img
-												src="https://images.unsplash.com/photo-1606744824163-985d376605aa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-												alt="img-blur-shadow"
-												class="img-fluid shadow border-radius-xl">
+											<h1 class="text-center bg-dark text-light"><%=lecture.getLectureName()%></h1>
+											<a class="d-block shadow-xl border-radius-xl"> 
+											<%
+ 												if (lecture.getFileUrl().endsWith("pdf") ) {
+ 											%> 
+ 											
+ 											<object data="../assets/Files/<%=lecture.getFileUrl()%>#page=2"
+													type="application/pdf" width="100%" height="1000px">
+													<p>
+														Your browser does not support PDFs. <a
+															href="https://example.com/test.pdf">Download the PDF</a>
+														.
+													</p>
+											</object> 
+											<%
+												 }else if(lecture.getFileUrl().endsWith("png") || lecture.getFileUrl().endsWith("jpg") ||lecture.getFileUrl().endsWith("jpeg")){
+											 %>
+											  <img class="mx-auto d-block"  src="../assets/Files/<%=lecture.getFileUrl()%>">
+											
+											<%
+												 }else{
+											 %>
+											  <video width="100%" controls>
+													<source src="../assets/Files/<%=lecture.getFileUrl()%>"
+														type="video/mp4">
+													Your browser does not support HTML video.
+											</video>
+											<%
+												}
+											%>
 											</a>
 										</div>
 										<div class="card-body p-3">
-											<a href="javascript:;">
-												<h5><%=course.getCourseName() %></h5>
-											</a>
-											<p class="mb-0 text-sm">
-												<b><%=course.getSpecification() %></b>
-											</p>
-											<p class="mb-4 text-sm"><%=course.getDescription() %></p>
+											<h3 class="text-center">
+												<b><%=lecture.getStatus()%></b>
+											</h3>
 											<div
 												class="d-flex align-items-center justify-content-between">
-												<form action="" method="POST">
-												<input type="hidden" name="courseID" value="<%=course.getCourseID()%>">
-												<button type="submit"
-													class="btn btn-outline-primary btn-sm mb-0">View
-													Course</button>
+												<form action="./quizView.jsp" method="POST">
+													<input type="hidden" name="lectureID"
+														value="<%=lecture.getLectureID()%>">
+													<button type="submit"
+														class="btn btn-outline-info btn-sm mb-0">View
+														Quiz</button>
 												</form>
-												
-												<!-- <div class="avatar-group mt-2">
-													<a href="javascript:;"
-														class="avatar avatar-xs rounded-circle"
-														data-bs-toggle="tooltip" data-bs-placement="bottom"
-														title="Peterson"> <img alt="Image placeholder"
-														src="../assets/img/team-4.jpg">
-													</a> <a href="javascript:;"
-														class="avatar avatar-xs rounded-circle"
-														data-bs-toggle="tooltip" data-bs-placement="bottom"
-														title="Nick Daniel"> <img alt="Image placeholder"
-														src="../assets/img/team-3.jpg">
-													</a> <a href="javascript:;"
-														class="avatar avatar-xs rounded-circle"
-														data-bs-toggle="tooltip" data-bs-placement="bottom"
-														title="Ryan Milly"> <img alt="Image placeholder"
-														src="../assets/img/team-2.jpg">
-													</a> <a href="javascript:;"
-														class="avatar avatar-xs rounded-circle"
-														data-bs-toggle="tooltip" data-bs-placement="bottom"
-														title="Elena Morison"> <img alt="Image placeholder"
-														src="../assets/img/team-1.jpg">
-													</a>
-												</div> -->
 											</div>
+											<p class="mb-0 text-sm">
+												<b><%=lecture.getDescription()%></b>
+											</p>
+											<p class="mb-4 text-sm"><%=course.getDescription()%></p>
 										</div>
 									</div>
 								</div>
-								<%
-								}
-								%> --%>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<br> <br>
+		<%
+		}
+		}
+		%>
 		<footer class="footer py-4  ">
 			<div class="container-fluid">
 				<div class="row align-items-center justify-content-lg-between">

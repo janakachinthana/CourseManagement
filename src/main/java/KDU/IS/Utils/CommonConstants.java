@@ -53,6 +53,8 @@ public class CommonConstants {
 	/** Constant for Column index eight */
 	public static final int COLUMN_INDEX_EIGHT = 8;
 	
+	/** Constant for Column index nine */
+	public static final int COLUMN_INDEX_NINE = 9;
 	
 //For Users 
 	
@@ -200,5 +202,38 @@ public class CommonConstants {
 				
 				/** Constant for query id of get all person ids in Query.xml */
 				public static final String QUERY_ID_GET_LECTURE_IDS = "lecture_ids";
-	
+				
+				
+				//For Quiz 
+				
+				/** Constant for quiz id prefix */
+				public static final String ID_QUIZ_PREFIX = "QUIZ_00";
+				
+				/** Constant for query id of drop_table in Query.xml */
+				public static final String QUERY_ID_DROP_QUIZ_TABLE = "drop_quiz_table";
+				
+				/** Constant for query id of create_table in Query.xml */
+				public static final String QUERY_ID_CREATE_QUIZ_TABLE = "create_quiz_table";
+				
+				/** Constant for query id of insert quiz in Query.xml */
+				public static final String QUERY_ID_INSERT_QUIZ = "insert_quiz";
+
+				/** Constant for query id of get an quiz in Query.xml */
+				public static final String QUERY_ID_GET_QUIZ = "quiz_by_id";  
+
+				
+				/** Constant for query id of get all quiz in Query.xml */
+				public static final String QUERY_ID_ALL_QUIZS = "all_quizs";
+				
+				/** Constant for query id of remove a quiz in Query.xml */
+				public static final String QUERY_ID_REMOVE_QUIZ = "remove_quiz";
+				
+				/** Constant for query id of update a quiz in Query.xml */
+				public static final String QUERY_ID_UPDATE_QUIZ = "update_quiz";
+				
+				/** Constant for query id of update a quiz in Query.xml */
+				public static final String QUERY_ID_UPDATE_QUIZ_STATUS = "update_quiz_status";
+				
+				/** Constant for query id of get all quiz ids in Query.xml */
+				public static final String QUERY_ID_GET_QUIZ_IDS = "quiz_ids";
 }

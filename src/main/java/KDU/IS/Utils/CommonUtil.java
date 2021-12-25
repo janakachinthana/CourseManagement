@@ -3,8 +3,6 @@ package KDU.IS.Utils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CommonUtil {
 
@@ -72,5 +70,20 @@ public class CommonUtil {
 		}
 		return id;
 	}
+	
+	
+	public static String generateQuizIDs(ArrayList<String> arrayList) {
+
+		String id;
+		int next = arrayList.size();
+		next++;
+		id = CommonConstants.ID_QUIZ_PREFIX + next;
+		if (arrayList.contains(id)) {
+			next++;
+			id = CommonConstants.ID_QUIZ_PREFIX + next;
+		}
+		return id;
+	}
+	
 	
 }

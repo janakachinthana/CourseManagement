@@ -31,7 +31,7 @@ public class LectureServiceImpl implements ILectureService{
 
 	static{
 		//create table or drop if exist
-		createLectureTable();
+//		createLectureTable();
 	}
 
 	private PreparedStatement preparedStatement;
